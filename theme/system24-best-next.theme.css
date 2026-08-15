@@ -600,10 +600,41 @@ body {
         --modal-footer-background: var(--bg-3);
         --deprecated-card-bg: var(--bg-3);
         --deprecated-text-input-bg: var(--bg-3);
+
+        /* Discord now keeps a second semantic layer for raised controls and
+           form fields. Its dark defaults otherwise leak into light modals,
+           menus, selects, and Vencord plugin settings. */
+        --bg-surface-raised: var(--bg-3);
+        --bg-surface-overlay: var(--bg-floating);
+        --bg-surface-overlay-tmp: var(--bg-floating);
+        --background-code: var(--bg-3);
+        --background-brand: var(--accent-2);
+
+        --input-background-default: var(--bg-3);
+        --input-background-error-default: color-mix(in srgb, var(--red-2) 12%, var(--bg-3));
+        --input-border-default: var(--border-light);
+        --input-border-hover: var(--border);
+        --input-border-active: var(--accent-2);
+        --input-border-readonly: var(--border-light);
+        --input-border-error-default: var(--red-2);
+        --input-border-error-hover: var(--red-3);
+        --input-text-default: var(--text-3);
+        --input-text-error-default: var(--text-3);
+        --input-placeholder-text-default: var(--text-5);
+        --input-foreground-placeholder: var(--text-5);
+        --input-icon-default: var(--text-4);
+
         --text-default: var(--text-3);
+        --text-strong: var(--text-2);
+        --text-subtle: var(--text-4);
         --text-normal: var(--text-3);
         --text-muted: var(--text-5);
         --text-primary: var(--text-2);
+        --text-link: var(--accent-1);
+        --text-brand: var(--accent-1);
+        --header-primary: var(--text-1);
+        --header-secondary: var(--text-4);
+        --channels-default: var(--text-4);
         --interactive-normal: var(--text-4);
         --interactive-hover: var(--text-2);
         --interactive-active: var(--text-1);
