@@ -1,0 +1,489 @@
+@property --tty-surfaces {
+    syntax: 'off | on';
+    inherits: false;
+    initial-value: on;
+}
+
+@container body style(--tty-surfaces: on) {
+    .scroller__36d07 {
+        background-image: linear-gradient(
+            to bottom,
+            var(--tty-rule-color) 0 1px,
+            transparent 1px 8px
+        );
+        background-size: 1px 8px;
+        background-repeat: repeat-y;
+        background-position: 8px 0;
+    }
+
+    .channelTextArea_f75fb0 {
+        box-shadow: inset 0 1px 0 var(--tty-rule-color);
+    }
+    .panels__5e434 {
+        box-shadow: inset 0 1px 0 var(--tty-rule-color);
+    }
+    .sidebarList__5e434 .header_f37cb1,
+    .title_f75fb0 {
+        box-shadow: inset 0 -1px 0 var(--tty-rule-color);
+    }
+
+    .message__5126c[class*='groupStart'] h3,
+    .message__5126c[class*='groupStart'] [class*='header_'] {
+        box-shadow: inset 0 -1px 0 color-mix(in oklch, var(--tty-rule-color) 55%, transparent);
+        padding-bottom: 2px;
+        margin-bottom: 2px;
+    }
+    .reaction__23977 {
+        border: 1px solid var(--border);
+    }
+
+    [class*='messageListItem'] {
+        position: relative;
+    }
+    [class*='messageListItem']:hover::before {
+        content: var(--tty-prompt);
+        position: absolute;
+        left: 4px;
+        top: 0.55em;
+        color: var(--tty-rule-color);
+        pointer-events: none;
+        font-weight: 500;
+        z-index: 1;
+    }
+
+    .message__5126c[class*='groupStart'] [class*='username_']::before {
+        content: var(--tty-prompt) ' ';
+        color: var(--tty-marker-color);
+        font-weight: 500;
+    }
+    .message__5126c[class*='compact'] [class*='username_']::after {
+        content: ' |';
+        color: var(--tty-rule-color);
+        font-weight: 400;
+    }
+
+    .message__5126c time::before {
+        content: '[';
+        color: var(--text-5);
+    }
+    .message__5126c time::after {
+        content: ']';
+        color: var(--text-5);
+    }
+
+    [class*='repliedMessage'] {
+        position: relative;
+        padding-inline-start: 1.25ch;
+    }
+    [class*='repliedMessage']::before {
+        content: '┌';
+        position: absolute;
+        left: 0;
+        top: 0.05em;
+        color: var(--tty-rule-color);
+        pointer-events: none;
+    }
+
+    .message__5126c.mentioned__5126c [class*='markup']::before {
+        content: '[!] ';
+        color: var(--accent-new);
+        font-weight: 500;
+    }
+
+    [class*='isSystemMessage'] [class*='markup']::before,
+    [class*='systemMessage'] [class*='markup']::before {
+        content: '* ';
+        color: var(--tty-rule-color);
+    }
+
+    .divider__908e2 .content__908e2::before,
+    .divider__908e2 [class*='content_']::before {
+        content: '── ';
+        color: var(--tty-rule-color);
+        letter-spacing: 0;
+    }
+    .divider__908e2 .content__908e2::after,
+    .divider__908e2 [class*='content_']::after {
+        content: ' ──';
+        color: var(--tty-rule-color);
+        letter-spacing: 0;
+    }
+    .divider__908e2.isUnread__908e2 .content__908e2::before,
+    .divider__908e2[class*='isUnread'] [class*='content_']::before {
+        content: '-- ';
+    }
+    .divider__908e2.isUnread__908e2 .content__908e2::after,
+    .divider__908e2[class*='isUnread'] [class*='content_']::after {
+        content: ' --';
+    }
+
+    .newMessagesBar__0f481::before {
+        content: '-- ';
+    }
+    .newMessagesBar__0f481::after {
+        content: ' --';
+    }
+
+    #app-mount [class*='codeContainer'] {
+        position: relative;
+        border: 1px solid var(--border);
+    }
+    #app-mount [class*='codeContainer']::before {
+        content: 'src';
+        position: absolute;
+        top: 4px;
+        left: 8px;
+        z-index: 1;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        text-transform: lowercase;
+        color: var(--tty-rule-color);
+        pointer-events: none;
+    }
+    #app-mount .hljs {
+        border-left: 2px solid var(--tty-marker-color);
+    }
+
+    .embedFull__623de {
+        position: relative;
+    }
+    .embedFull__623de::before {
+        content: 'emb';
+        position: absolute;
+        top: -8px;
+        left: 8px;
+        background: var(--background-base-low);
+        padding: 0 4px;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        color: var(--tty-rule-color);
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .channelTextArea_f75fb0 [class*='sansAttachButton'] {
+        position: relative;
+        padding-inline-start: 1.15rem;
+    }
+    .channelTextArea_f75fb0 [class*='sansAttachButton']::before {
+        content: var(--tty-input-prompt);
+        position: absolute;
+        left: 0;
+        top: 11px;
+        color: var(--tty-marker-color);
+        font-weight: 500;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    .wrapper__2ea32 {
+        position: relative;
+    }
+    .wrapper__2ea32[class*='modeSelected']::before,
+    .channel__972a0[class*='selected']::before {
+        content: var(--tty-prompt);
+        position: absolute;
+        left: 6px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--tty-marker-color);
+        font-weight: 500;
+        pointer-events: none;
+        z-index: 2;
+    }
+    .wrapper__2ea32[class*='modeSelected'] .link__2ea32,
+    .channel__972a0[class*='selected'] {
+        box-shadow: inset 2px 0 0 var(--tty-marker-color);
+    }
+    .channel__972a0 {
+        position: relative;
+    }
+
+    #app-mount .wrapper__2ea32 .unread__2ea32 {
+        width: auto;
+        height: auto;
+        min-width: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+    }
+    #app-mount .wrapper__2ea32 .unread__2ea32::before {
+        content: '*';
+        color: var(--tty-marker-color);
+        font-size: 14px;
+        line-height: 1;
+        font-weight: 500;
+    }
+
+    .sidebarList__5e434 [class*='containerDefault']:not(:has(.link__2ea32)) h3 {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        width: 100%;
+        letter-spacing: 0.08em;
+    }
+    .sidebarList__5e434 [class*='containerDefault']:not(:has(.link__2ea32)) h3::after {
+        content: '';
+        flex: 1 1 auto;
+        height: 1px;
+        min-width: 12px;
+        background: var(--tty-rule-color);
+        opacity: 0.4;
+    }
+
+    [class*='voiceUser'] [class*='username']::before,
+    [class*='voiceUser'] [class*='name_']::before {
+        content: '├ ';
+        color: var(--tty-rule-color);
+        font-weight: 400;
+    }
+    [class*='voiceUser'][class*='speaking'] [class*='username']::before,
+    [class*='voiceUser']:has([class*='speaking']) [class*='username']::before {
+        content: '└ ';
+        color: var(--tty-marker-color);
+    }
+
+    .subtitleContainer_f75fb0 [class*='topic']::before {
+        content: ' — ';
+        color: var(--tty-rule-color);
+    }
+
+    .wrapper__58105 .item__58105 {
+        width: 2px;
+        border-radius: 0;
+    }
+
+    [class*='membersGroup'] {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        letter-spacing: 0.08em;
+    }
+    [class*='membersGroup']::after {
+        content: '';
+        flex: 1 1 auto;
+        height: 1px;
+        min-width: 12px;
+        background: var(--tty-rule-color);
+        opacity: 0.4;
+    }
+
+    .member_c8ffbb[class*='selected'],
+    .container__91a9d[class*='selected'] {
+        box-shadow: inset 2px 0 0 var(--tty-marker-color);
+    }
+
+    .member_c8ffbb:has(rect[fill='#45a366']) [class*='nameAndDecorators']::after,
+    .container__91a9d:has(rect[fill='#45a366']) [class*='nameAndDecorators']::after,
+    .member_c8ffbb:has([style*='rgb(69, 163, 102)']) [class*='nameAndDecorators']::after {
+        content: ' on';
+        color: var(--online);
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        margin-left: 6px;
+    }
+    .member_c8ffbb:has(rect[fill='#ffc04e']) [class*='nameAndDecorators']::after,
+    .container__91a9d:has(rect[fill='#ffc04e']) [class*='nameAndDecorators']::after {
+        content: ' id';
+        color: var(--idle);
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        margin-left: 6px;
+    }
+    .member_c8ffbb:has(rect[fill='#da3e44']) [class*='nameAndDecorators']::after,
+    .container__91a9d:has(rect[fill='#da3e44']) [class*='nameAndDecorators']::after {
+        content: ' dn';
+        color: var(--dnd);
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        margin-left: 6px;
+    }
+    .member_c8ffbb:has(rect[fill='#84858d']) [class*='nameAndDecorators']::after,
+    .container__91a9d:has(rect[fill='#84858d']) [class*='nameAndDecorators']::after {
+        content: ' of';
+        color: var(--offline);
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        margin-left: 6px;
+    }
+    .member_c8ffbb:has(rect[fill='#9147ff']) [class*='nameAndDecorators']::after,
+    .container__91a9d:has(rect[fill='#9147ff']) [class*='nameAndDecorators']::after {
+        content: ' st';
+        color: var(--streaming);
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        margin-left: 6px;
+    }
+
+    .panels__5e434 [class*='withTagAsButton'] [class*='title_']::before,
+    .panels__5e434 [class*='withTagless'] [class*='title_']::before,
+    .panels__5e434 [class*='nameTag'] [class*='title_']::before {
+        content: var(--tty-input-prompt) ' ';
+        color: var(--tty-marker-color);
+        font-weight: 500;
+    }
+    .panels__5e434 [class*='rtcConnectionStatus']::before,
+    .panels__5e434 [class*='connection'] [class*='label']::before {
+        content: 'vc ';
+        color: var(--tty-rule-color);
+        letter-spacing: 0.08em;
+        font-weight: 500;
+    }
+
+    .peopleColumn__133bf [class*='peopleListItem'][class*='active']::before,
+    .peopleColumn__133bf [class*='peopleListItem'][class*='selected']::before {
+        content: var(--tty-prompt);
+        color: var(--tty-marker-color);
+        font-weight: 500;
+        margin-right: 6px;
+    }
+
+    .root__49fc1 {
+        position: relative;
+    }
+    .root__49fc1::before {
+        content: '[ dialog ]';
+        position: absolute;
+        top: -10px;
+        left: 8px;
+        background-color: var(--background-base-low);
+        padding: 0 4px;
+        z-index: 4;
+        font-size: 12px;
+        font-weight: var(--label-font-weight);
+        letter-spacing: 0.04em;
+        color: var(--label-color);
+        pointer-events: none;
+    }
+
+    .standardSidebarView__23e6b {
+        position: relative;
+    }
+    .standardSidebarView__23e6b::before {
+        content: '[ config ]';
+        position: absolute;
+        top: 8px;
+        left: 16px;
+        background-color: var(--background-base-low);
+        padding: 0 4px;
+        z-index: 4;
+        font-size: 12px;
+        font-weight: var(--label-font-weight);
+        letter-spacing: 0.04em;
+        color: var(--label-color);
+        pointer-events: none;
+    }
+
+    .menu_c1e9c4 {
+        position: relative;
+    }
+    .menu_c1e9c4::after {
+        content: '[ menu ]';
+        position: absolute;
+        top: -10px;
+        left: 8px;
+        background-color: var(--background-base-low);
+        padding: 0 4px;
+        z-index: 4;
+        font-size: 12px;
+        font-weight: var(--label-font-weight);
+        letter-spacing: 0.04em;
+        color: var(--label-color);
+        pointer-events: none;
+    }
+
+    .outer_c0bea0 {
+        position: relative;
+    }
+    .outer_c0bea0::before {
+        content: 'whois';
+        position: absolute;
+        top: 8px;
+        left: 10px;
+        z-index: 5;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+        color: var(--text-1);
+        background: var(--bg-4);
+        padding: 0 5px;
+        pointer-events: none;
+    }
+    .outer_c0bea0::after {
+        content: '';
+        position: absolute;
+        inset: 5px;
+        z-index: 4;
+        pointer-events: none;
+        background:
+            linear-gradient(var(--tty-marker-color), var(--tty-marker-color)) top left / 10px 2px no-repeat,
+            linear-gradient(var(--tty-marker-color), var(--tty-marker-color)) top left / 2px 10px no-repeat,
+            linear-gradient(var(--tty-marker-color), var(--tty-marker-color)) top right / 10px 2px no-repeat,
+            linear-gradient(var(--tty-marker-color), var(--tty-marker-color)) top right / 2px 10px no-repeat,
+            linear-gradient(var(--tty-marker-color), var(--tty-marker-color)) bottom left / 10px 2px no-repeat,
+            linear-gradient(var(--tty-marker-color), var(--tty-marker-color)) bottom left / 2px 10px no-repeat,
+            linear-gradient(var(--tty-marker-color), var(--tty-marker-color)) bottom right / 10px 2px no-repeat,
+            linear-gradient(var(--tty-marker-color), var(--tty-marker-color)) bottom right / 2px 10px no-repeat;
+    }
+
+    .outer_c0bea0 [class*='section'] [class*='title'],
+    .outer_c0bea0 h3[class*='title'],
+    .inner_c0bea0 [class*='sectionTitle'] {
+        letter-spacing: 0.1em;
+        text-transform: lowercase;
+        color: var(--tty-rule-color);
+        font-size: 11px;
+        font-weight: 500;
+    }
+
+    .outer_c0bea0 [class*='rolePill'] {
+        border: 1px solid var(--border);
+    }
+    .outer_c0bea0 [class*='roleName']::before {
+        content: '[';
+        color: var(--tty-rule-color);
+        margin-right: 2px;
+    }
+    .outer_c0bea0 [class*='roleName']::after {
+        content: ']';
+        color: var(--tty-rule-color);
+        margin-left: 2px;
+    }
+
+    .outer_c0bea0 [class*='bio']::before,
+    .outer_c0bea0 [class*='aboutMeSection']::before {
+        content: 'about';
+        display: block;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        color: var(--tty-rule-color);
+        margin-bottom: 4px;
+    }
+    .outer_c0bea0 [class*='note']::before {
+        content: 'note >';
+        display: block;
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.12em;
+        color: var(--tty-rule-color);
+        margin-bottom: 4px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    @container body style(--tty-surfaces: on) {
+        [class*='messageListItem']:hover::before,
+        .wrapper__2ea32[class*='modeSelected']::before,
+        .channel__972a0[class*='selected']::before {
+            transition: none;
+        }
+    }
+}

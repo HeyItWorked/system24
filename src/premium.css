@@ -1,0 +1,338 @@
+/* premium.css — system24 next: original premium profile treatments
+   PLATE: nameplate frame + sheen sweep    BEZEL: presence-tinted avatar brackets
+   DOSSIER: file-tab profile card frames   PROMPT: blinking cursor on your name */
+
+@property --premium-profiles {
+    syntax: 'off | on';
+    inherits: false;
+    initial-value: on;
+}
+
+@property --premium-scope {
+    syntax: 'all | premium';
+    inherits: false;
+    initial-value: all;
+}
+
+@property --profile-preset {
+    syntax: 'session | cyber | mainframe | void';
+    inherits: false;
+    initial-value: cyber;
+}
+
+@container body style(--premium-profiles: on) {
+    #app-mount {
+        --s24-premium-line: color-mix(in srgb, var(--premium-color) 75%, var(--text-1));
+        --s24-premium-soft: color-mix(in srgb, var(--premium-color) calc(var(--premium-glow) * 45%), transparent);
+        --s24-premium-dim: color-mix(in srgb, var(--premium-color) 35%, transparent);
+        --s24-scan: rgb(0 0 0 / var(--scanline-opacity));
+        --s24-profile-label: 'SESSION::ACTIVE';
+    }
+
+    /* ── PLATE: nameplate treatment ─────────────────────────── */
+
+    /* framed plate with corner rivets; sweep animation added below.
+       nameplates only render for owners, so the plate trim is inherently premium */
+    #app-mount .container_df39b2 {
+        border: 1px solid var(--s24-premium-dim);
+        box-shadow:
+            inset 0 0 0 1px rgb(0 0 0 / 0.25),
+            0 0 8px 0 var(--s24-premium-soft);
+    }
+    #app-mount .container_df39b2::after {
+        content: '';
+        position: absolute;
+        inset: 2px;
+        z-index: 1;
+        pointer-events: none;
+        background:
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) left 0 top 0 / 3px 1px,
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) left 0 top 0 / 1px 3px,
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) right 0 top 0 / 3px 1px,
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) right 0 top 0 / 1px 3px,
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) left 0 bottom 0 / 3px 1px,
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) left 0 bottom 0 / 1px 3px,
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) right 0 bottom 0 / 3px 1px,
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) right 0 bottom 0 / 1px 3px;
+        background-repeat: no-repeat;
+    }
+    #app-mount .container_df39b2::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background: linear-gradient(100deg, transparent 45%, rgb(255 255 255 / 0.08) 50%, transparent 55%);
+        background-size: 200% 100%;
+        background-position: -20% 0;
+        mix-blend-mode: screen;
+    }
+
+    /* ── BEZEL: avatar ornamentation ────────────────────────── */
+
+    /* square brackets + soft ring around avatars in chat, members, dms,
+       mini/full profiles, settings card, and your user panel */
+    #app-mount .message__5126c .avatar_c19a55 .wrapper__44b0c,
+    #app-mount .member_c8ffbb .avatar__20a53 .wrapper__44b0c,
+    #app-mount .privateChannels_e6b769 .avatarWithText__972a0 .wrapper__44b0c,
+    #app-mount .outer_c0bea0 .wrapper__44b0c,
+    #app-mount .root__24502 .wrapper__44b0c,
+    #app-mount .accountProfileCard_a9178b .wrapper__44b0c,
+    #app-mount .avatarWrapper__37e49 .wrapper__44b0c {
+        position: relative;
+    }
+    #app-mount .message__5126c .avatar_c19a55 .wrapper__44b0c::before,
+    #app-mount .member_c8ffbb .avatar__20a53 .wrapper__44b0c::before,
+    #app-mount .privateChannels_e6b769 .avatarWithText__972a0 .wrapper__44b0c::before,
+    #app-mount .outer_c0bea0 .wrapper__44b0c::before,
+    #app-mount .root__24502 .wrapper__44b0c::before,
+    #app-mount .accountProfileCard_a9178b .wrapper__44b0c::before,
+    #app-mount .avatarWrapper__37e49 .wrapper__44b0c::before {
+        /* halo ring + bracket corners in a single layer */
+        content: '';
+        position: absolute;
+        inset: -4px;
+        border: 1px solid var(--s24-premium-soft);
+        pointer-events: none;
+        z-index: 1;
+        background:
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) left 0 top 0 / 6px 1px,
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) left 0 top 0 / 1px 6px,
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) right 0 top 0 / 6px 1px,
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) right 0 top 0 / 1px 6px,
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) left 0 bottom 0 / 6px 1px,
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) left 0 bottom 0 / 1px 6px,
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) right 0 bottom 0 / 6px 1px,
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) right 0 bottom 0 / 1px 6px;
+        background-repeat: no-repeat;
+    }
+
+    /* tint the halo with the user's presence when one is visible */
+    #app-mount .message__5126c .avatar_c19a55 .wrapper__44b0c:has(rect[fill='#45a366'])::before,
+    #app-mount .member_c8ffbb .avatar__20a53 .wrapper__44b0c:has(rect[fill='#45a366'])::before,
+    #app-mount .privateChannels_e6b769 .avatarWithText__972a0 .wrapper__44b0c:has(rect[fill='#45a366'])::before {
+        border-color: color-mix(in srgb, var(--online) 55%, transparent);
+    }
+    #app-mount .message__5126c .avatar_c19a55 .wrapper__44b0c:has(rect[fill='#ffc04e'])::before,
+    #app-mount .member_c8ffbb .avatar__20a53 .wrapper__44b0c:has(rect[fill='#ffc04e'])::before,
+    #app-mount .privateChannels_e6b769 .avatarWithText__972a0 .wrapper__44b0c:has(rect[fill='#ffc04e'])::before {
+        border-color: color-mix(in srgb, var(--idle) 55%, transparent);
+    }
+    #app-mount .message__5126c .avatar_c19a55 .wrapper__44b0c:has(rect[fill='#da3e44'])::before,
+    #app-mount .member_c8ffbb .avatar__20a53 .wrapper__44b0c:has(rect[fill='#da3e44'])::before,
+    #app-mount .privateChannels_e6b769 .avatarWithText__972a0 .wrapper__44b0c:has(rect[fill='#da3e44'])::before {
+        border-color: color-mix(in srgb, var(--dnd) 55%, transparent);
+    }
+
+    /* ── DOSSIER: profile card frames ───────────────────────────── */
+
+    /* double frame, drifting scanlines, corner ticks, and a file tab for
+       mini profiles, dm profile sidebar, full profile modal, and the
+       account settings profile card */
+
+    #app-mount .root__24502,
+    #app-mount .accountProfileCard_a9178b {
+        position: relative;
+        box-shadow:
+            0 0 0 1px var(--s24-premium-dim),
+            0 0 10px 0 var(--s24-premium-soft);
+    }
+
+    /* scanline texture + corner ticks, one passive overlay over card art */
+    #app-mount .root__24502::before,
+    #app-mount .accountProfileCard_a9178b::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 2;
+        background:
+            repeating-linear-gradient(to bottom, transparent 0 3px, var(--s24-scan) 3px 4px) left 0 top -8px / 100% calc(100% + 8px),
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) left 0 top 0 / 10px 1px,
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) left 0 top 0 / 1px 10px,
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) right 0 top 0 / 10px 1px,
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) right 0 top 0 / 1px 10px,
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) left 0 bottom 0 / 10px 1px,
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) left 0 bottom 0 / 1px 10px,
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) right 0 bottom 0 / 10px 1px,
+            linear-gradient(var(--s24-premium-line), var(--s24-premium-line)) right 0 bottom 0 / 1px 10px;
+        background-repeat: no-repeat;
+    }
+
+    /* file tab identifying the card, like a record header */
+    #app-mount .root__24502::after,
+    #app-mount .accountProfileCard_a9178b::after {
+        display: block;
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        z-index: 3;
+        padding: 0 6px;
+        pointer-events: none;
+        font-size: 10px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1ch;
+        color: var(--premium-color);
+        background-color: var(--bg-4);
+        border: 1px solid var(--s24-premium-dim);
+    }
+    #app-mount .root__24502::after,
+    #app-mount .accountProfileCard_a9178b::after {
+        content: var(--s24-profile-label);
+    }
+
+    /* ── PROMPT: blinking terminal cursor after your own name ──── */
+
+    #app-mount .nameTag__37e49::after {
+        content: '_';
+        color: var(--premium-color);
+        font-weight: 500;
+    }
+}
+
+/* Three visual systems share one current-selector implementation. The preset
+   changes the composition, not merely the palette. */
+@container body style(--premium-profiles: on) and style(--profile-preset: cyber) {
+    #app-mount {
+        --s24-profile-label: 'TARGET::LOCKED';
+    }
+    #app-mount :is(.root__24502, .accountProfileCard_a9178b)::before {
+        background:
+            linear-gradient(90deg, var(--s24-premium-dim) 1px, transparent 1px) 0 0 / 24px 24px,
+            linear-gradient(var(--s24-premium-dim) 1px, transparent 1px) 0 0 / 24px 24px,
+            linear-gradient(115deg, transparent 42%, var(--s24-premium-soft) 49%, transparent 56%) -120% 0 / 220% 100%,
+            repeating-linear-gradient(to bottom, transparent 0 3px, var(--s24-scan) 3px 4px);
+    }
+    #app-mount :is(.root__24502, .accountProfileCard_a9178b) [class*='banner']:not(svg) {
+        filter: saturate(0.72) contrast(1.08);
+        box-shadow: inset 0 -2px 0 var(--s24-premium-line);
+    }
+}
+
+@container body style(--premium-profiles: on) and style(--profile-preset: mainframe) {
+    #app-mount {
+        --s24-profile-label: 'MAINFRAME::TTY';
+    }
+    #app-mount :is(.root__24502, .accountProfileCard_a9178b) {
+        outline: 1px solid var(--s24-premium-dim);
+        outline-offset: -5px;
+        box-shadow:
+            0 0 0 1px var(--s24-premium-line),
+            inset 0 0 20px color-mix(in srgb, var(--premium-color) 9%, transparent),
+            0 0 10px var(--s24-premium-soft);
+    }
+    #app-mount :is(.root__24502, .accountProfileCard_a9178b)::before {
+        background:
+            repeating-linear-gradient(to bottom, transparent 0 5px, var(--s24-scan) 5px 6px),
+            linear-gradient(90deg, var(--s24-premium-line), var(--s24-premium-line)) 8px 8px / calc(100% - 16px) 1px no-repeat,
+            linear-gradient(90deg, var(--s24-premium-line), var(--s24-premium-line)) 8px calc(100% - 8px) / calc(100% - 16px) 1px no-repeat;
+    }
+    #app-mount :is(.root__24502, .accountProfileCard_a9178b) [class*='overlay_'],
+    #app-mount :is(.root__24502, .accountProfileCard_a9178b) [class*='body_'] {
+        border-top: 1px dashed var(--s24-premium-dim);
+    }
+}
+
+@container body style(--premium-profiles: on) and style(--profile-preset: void) {
+    #app-mount {
+        --s24-profile-label: 'VOID::KERNEL';
+    }
+    #app-mount :is(.root__24502, .accountProfileCard_a9178b) {
+        box-shadow:
+            0 0 0 1px var(--best-next-color-secondary),
+            0 0 18px var(--s24-premium-soft),
+            inset 0 0 34px color-mix(in srgb, var(--best-next-color-secondary) 10%, transparent);
+    }
+    #app-mount :is(.root__24502, .accountProfileCard_a9178b)::before {
+        background:
+            radial-gradient(circle at 12% 18%, var(--s24-premium-soft), transparent 24%),
+            radial-gradient(circle at 86% 76%, color-mix(in srgb, var(--best-next-color-secondary) 24%, transparent), transparent 28%),
+            repeating-conic-gradient(from 45deg at 50% 50%, transparent 0 12deg, var(--s24-premium-dim) 13deg 14deg, transparent 15deg 30deg),
+            repeating-linear-gradient(to bottom, transparent 0 3px, var(--s24-scan) 3px 4px);
+        opacity: 0.72;
+    }
+    #app-mount :is(.root__24502, .accountProfileCard_a9178b)::after {
+        color: var(--best-next-color-secondary);
+        border-color: color-mix(in srgb, var(--best-next-color-secondary) 55%, transparent);
+    }
+}
+
+/* scope 'premium': keep the plates, card frames, tabs, and the cursor,
+   but limit the avatar bezel to avatars wearing a shop decoration */
+@container body style(--premium-profiles: on) and style(--premium-scope: premium) {
+    #app-mount .message__5126c .avatar_c19a55 .wrapper__44b0c:not(:has(.avatarDecoration__44b0c))::before,
+    #app-mount .member_c8ffbb .avatar__20a53 .wrapper__44b0c:not(:has(.avatarDecoration__44b0c))::before,
+    #app-mount .privateChannels_e6b769 .avatarWithText__972a0 .wrapper__44b0c:not(:has(.avatarDecoration__44b0c))::before,
+    #app-mount .outer_c0bea0 .wrapper__44b0c:not(:has(.avatarDecoration__44b0c))::before,
+    #app-mount .root__24502 .wrapper__44b0c:not(:has(.avatarDecoration__44b0c))::before,
+    #app-mount .accountProfileCard_a9178b .wrapper__44b0c:not(:has(.avatarDecoration__44b0c))::before,
+    #app-mount .avatarWrapper__37e49 .wrapper__44b0c:not(:has(.avatarDecoration__44b0c))::before {
+        content: none;
+    }
+}
+
+/* motion layer: only with animations on and motion allowed */
+@container body style(--premium-profiles: on) and style(--animations: on) {
+    @media (prefers-reduced-motion: no-preference) {
+        /* nameplate sheen sweep */
+        #app-mount .container_df39b2::before {
+            animation: s24-plate-sweep 5s linear infinite;
+        }
+        @keyframes s24-plate-sweep {
+            from {
+                background-position: -20% 0;
+            }
+            to {
+                background-position: 120% 0;
+            }
+        }
+
+        /* scanlines drift slowly like a crt refresh */
+        #app-mount .root__24502::before,
+        #app-mount .accountProfileCard_a9178b::before {
+            animation: s24-scan-drift 12s linear infinite;
+        }
+        @keyframes s24-scan-drift {
+            from {
+                background-position:
+                    left 0 top -8px,
+                    left 0 top 0,
+                    left 0 top 0,
+                    right 0 top 0,
+                    right 0 top 0,
+                    left 0 bottom 0,
+                    left 0 bottom 0,
+                    right 0 bottom 0,
+                    right 0 bottom 0;
+            }
+            to {
+                background-position:
+                    left 0 top 0,
+                    left 0 top 0,
+                    left 0 top 0,
+                    right 0 top 0,
+                    right 0 top 0,
+                    left 0 bottom 0,
+                    left 0 bottom 0,
+                    right 0 bottom 0,
+                    right 0 bottom 0;
+            }
+        }
+
+        /* identity line cursor blink */
+        #app-mount .nameTag__37e49::after {
+            animation: s24-blink 1.2s linear infinite;
+        }
+        @keyframes s24-blink {
+            0%,
+            49% {
+                opacity: 1;
+            }
+            50%,
+            100% {
+                opacity: 0;
+            }
+        }
+    }
+}

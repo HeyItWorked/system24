@@ -1,6 +1,6 @@
 body {
-    --label-color: var(--text-muted);
-    --label-hover-color: var(--brand-360);
+    --label-color: color-mix(in oklch, var(--text-4) 78%, var(--bg-4));
+    --label-hover-color: var(--best-next-color);
     --label-font-weight: 500;
 }
 
@@ -33,8 +33,14 @@ body {
             left: 8px;
             background-color: var(--background-base-low);
             padding: 0 4px;
-            z-index: 100;
-            font-size: 16px;
+            z-index: 4;
+            width: max-content;
+            max-width: none;
+            white-space: nowrap;
+            line-height: 1.25;
+            letter-spacing: 0.04em;
+            font-size: 12px;
+            pointer-events: none;
             transition: color var(--border-hover-transition);
         }
 
@@ -44,41 +50,42 @@ body {
     }
 
     .guilds__5e434::after {
-        content: 'nav';
+        content: '[ nav ]';
+        left: 5px;
     }
     .panels__5e434::after {
-        content: 'user';
+        content: '[ user ]';
     }
     .sidebarList__5e434::after {
-        content: 'channels';
+        content: '[ channels ]';
     }
     .subtitleContainer_f75fb0::after {
-        content: 'channel';
+        content: '[ channel ]';
     }
     .messagesWrapper__36d07::after {
-        content: 'chat';
+        content: '[ chat ]';
     }
     .channelTextArea_f75fb0::after {
-        content: 'input';
+        content: '[ input ]';
     }
     .container_c8ffbb::after,
     .content_f75fb0 > .membersWrap_c8ffbb::after {
-        content: 'members';
+        content: '[ members ]';
     }
     .container__133bf > .container__9293f:after {
-        content: 'friends';
+        content: '[ friends ]';
     }
     .peopleColumn__133bf::after {
-        content: 'list';
+        content: '[ list ]';
     }
     .nowPlayingColumn__133bf::after {
-        content: 'activity';
+        content: '[ activity ]';
     }
     .container__01ae2 > .container__9293f::after {
-        content: 'thread';
+        content: '[ thread ]';
     }
     .callContainer_cb9592::after {
-        content: 'vc';
+        content: '[ vc ]';
     }
 
     .content_f75fb0 > .membersWrap_c8ffbb,

@@ -1,6 +1,10 @@
 
 <img src="https://github.com/refact0r/system24/raw/main/assets/preview.png">
 
+> This fork also contains **System24 Best Next**, a local premium/TTY synthesis
+> built on top of the original theme. See [BEST_NEXT.md](BEST_NEXT.md) for its
+> install file, presets, controls, and attribution.
+
 # system24
 
 a customizable, tui-style discord theme. inspired by [spicetify text theme](https://github.com/spicetify/spicetify-themes/tree/master/text).

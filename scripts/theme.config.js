@@ -10,5 +10,7 @@ module.exports = {
         'panel-labels.css',
         'spotify-bar.css',
         'unrounding.css',
+        'tty-surfaces.css',
+        'premium.css',
     ],
 };
