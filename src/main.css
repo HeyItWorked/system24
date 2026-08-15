@@ -78,6 +78,7 @@ body {
     --label-font-weight: 500; /* font weight of labels */
 
     /* System24 Best Next — paste a HEX color into the first variable */
+    --best-next-palette: sea-glass; /* noir | sea-glass */
     --best-next-color: #55d6ff; /* primary accent: e.g. #55d6ff */
     --best-next-color-secondary: color-mix(in oklch, var(--best-next-color) 62%, #ff4fd8); /* derived contrast accent */
     --accent-1: color-mix(in oklch, var(--best-next-color) 82%, white); /* links / bright accent */

@@ -7,6 +7,7 @@ module.exports = {
         'main.css',
         'ascii.css',
         'colors.css',
+        'palettes.css',
         'panel-labels.css',
         'spicetify-text.css',
         'spotify-bar.css',

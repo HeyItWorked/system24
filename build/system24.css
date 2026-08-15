@@ -79,6 +79,7 @@ body {
     --label-font-weight: 500; /* font weight of labels */
 
     /* System24 Best Next — paste a HEX color into the first variable */
+    --best-next-palette: sea-glass; /* noir | sea-glass */
     --best-next-color: #55d6ff; /* primary accent: e.g. #55d6ff */
     --best-next-color-secondary: color-mix(in oklch, var(--best-next-color) 62%, #ff4fd8); /* derived contrast accent */
     --accent-1: color-mix(in oklch, var(--best-next-color) 82%, white); /* links / bright accent */
@@ -295,6 +296,180 @@ body {
         --idle-2: var(--idle);
         --offline-2: var(--offline);
         --streaming-2: var(--streaming);
+    }
+}
+
+/* palettes.css */
+/* Best Next application palettes. Palette changes are complete semantic
+   remaps so profile and interaction layers remain legible in either mode. */
+
+@property --best-next-palette {
+    syntax: 'noir | sea-glass';
+    inherits: false;
+    initial-value: noir;
+}
+
+@container body style(--best-next-palette: sea-glass) {
+    #app-mount {
+        color-scheme: light;
+
+        /* visibly tinted sea-glass surfaces; no white canvas */
+        --bg-1: #a9c4bc;
+        --bg-2: #b9d0c9;
+        --bg-3: #c8dcd6;
+        --bg-4: #d8e6e1;
+        --bg-floating: #d1e1dc;
+
+        /* dark mineral ink with a decisive hierarchy on pastel surfaces */
+        --text-0: #f8fbfa;
+        --text-1: #102b28;
+        --text-2: #193733;
+        --text-3: #284943;
+        --text-4: #3b5c56;
+        --text-5: #4d6c66;
+
+        /* one cohesive accent system with a lilac counterpoint */
+        --best-next-color: #3f8982;
+        --best-next-color-secondary: #8e78a9;
+        --premium-color: var(--best-next-color);
+        --accent-1: #286d68;
+        --accent-2: #3f8982;
+        --accent-3: #377871;
+        --accent-4: #306963;
+        --accent-5: #285a55;
+        --accent-new: #b66773;
+
+        /* quiet translucent interaction states */
+        --hover: rgb(44 105 99 / 0.1);
+        --active: rgb(44 105 99 / 0.18);
+        --active-2: rgb(44 105 99 / 0.28);
+        --message-hover: rgb(44 105 99 / 0.08);
+        --mention: linear-gradient(to right, rgb(63 137 130 / 0.22) 40%, transparent);
+        --mention-hover: linear-gradient(to right, rgb(63 137 130 / 0.14) 40%, transparent);
+        --reply: linear-gradient(to right, rgb(64 91 87 / 0.11) 40%, transparent);
+        --reply-hover: linear-gradient(to right, rgb(64 91 87 / 0.07) 40%, transparent);
+
+        /* accessible pastel status tones */
+        --online: #4f8b6b;
+        --dnd: #b66773;
+        --idle: #a87d3f;
+        --streaming: #8870a5;
+        --offline: #718681;
+
+        --border-light: rgb(39 91 86 / 0.14);
+        --border: rgb(39 91 86 / 0.26);
+        --border-hover: var(--best-next-color);
+        --button-border: rgb(39 76 72 / 0.25);
+
+        /* component families used by System24 and Discord statuses */
+        --red-1: #c9828b;
+        --red-2: #b66773;
+        --red-3: #a75763;
+        --red-4: #944953;
+        --red-5: #803d47;
+        --green-1: #75a98b;
+        --green-2: #5f9878;
+        --green-3: #4f8b6b;
+        --green-4: #42775b;
+        --green-5: #37644d;
+        --blue-1: #8ab4c4;
+        --blue-2: #70a2b5;
+        --blue-3: #5b8fa4;
+        --blue-4: #4d7b8e;
+        --blue-5: #416878;
+        --yellow-1: #cfad72;
+        --yellow-2: #bd9655;
+        --yellow-3: #a87d3f;
+        --yellow-4: #916b35;
+        --yellow-5: #7b5a2c;
+        --purple-1: #a38eb9;
+        --purple-2: #8e78a9;
+        --purple-3: #7e6999;
+        --purple-4: #75638c;
+        --purple-5: #635377;
+
+        --tty-rule-color: color-mix(in oklch, var(--text-4) 60%, transparent);
+        --tty-marker-color: var(--best-next-color);
+        --glyph-frame-color: var(--best-next-color);
+        --nameplate-ink: var(--text-2);
+        --session-frame-color: var(--best-next-color);
+        --cursor-color: var(--best-next-color-secondary);
+        --scanline-opacity: 0.025;
+    }
+
+    /* Some Discord surfaces use explicit theme tokens instead of System24's
+       public variables. Keep them coordinated without covering custom cards. */
+    #app-mount {
+        --background-base-lowest: var(--bg-1);
+        --background-base-lower: var(--bg-2);
+        --background-base-low: var(--bg-4);
+        --background-base: var(--bg-4);
+        --background-base-high: var(--bg-3);
+        --background-base-higher: var(--bg-2);
+        --background-surface-high: var(--bg-3);
+        --background-surface-higher: var(--bg-2);
+        --background-surface-highest: var(--bg-1);
+        --background-floating: var(--bg-floating);
+        --background-primary: var(--bg-4);
+        --background-secondary: var(--bg-3);
+        --background-secondary-alt: var(--bg-2);
+        --background-tertiary: var(--bg-1);
+        --background-accent: var(--accent-3);
+        --background-mod-subtle: var(--hover);
+        --background-mod-normal: var(--active);
+        --background-mod-strong: var(--active-2);
+        --background-message-hover: var(--message-hover);
+        --background-mentioned: rgb(63 137 130 / 0.2);
+        --background-mentioned-hover: rgb(63 137 130 / 0.13);
+        --input-background: var(--bg-3);
+        --channeltextarea-background: var(--bg-3);
+        --modal-background: var(--bg-4);
+        --modal-footer-background: var(--bg-3);
+        --deprecated-card-bg: var(--bg-3);
+        --deprecated-text-input-bg: var(--bg-3);
+        --text-default: var(--text-3);
+        --text-normal: var(--text-3);
+        --text-muted: var(--text-5);
+        --text-primary: var(--text-2);
+        --interactive-normal: var(--text-4);
+        --interactive-hover: var(--text-2);
+        --interactive-active: var(--text-1);
+        --interactive-muted: var(--text-5);
+    }
+
+    #app-mount .bg__960e4 {
+        background:
+            radial-gradient(circle at 14% 8%, rgb(142 120 169 / 0.1), transparent 28%),
+            linear-gradient(135deg, #d8e6e1 0%, #c5d9d3 100%);
+    }
+
+    #app-mount input,
+    #app-mount [class*='searchBar'],
+    #app-mount [class*='searchBox'] {
+        color: var(--text-2);
+        background-color: var(--bg-3);
+    }
+
+    /* Profile decorations can inject pale display-name colors intended for
+       Discord's dark canvas. Preserve the decoration elsewhere, but keep the
+       light people surfaces readable. */
+    #app-mount .peopleColumn__133bf [class*='userInfo'] [class*='username'] {
+        color: var(--text-1) !important;
+        font-weight: 700;
+    }
+
+    #app-mount .peopleColumn__133bf [class*='userInfo'] [class*='text'] {
+        color: var(--text-4) !important;
+    }
+
+    #app-mount .nowPlayingColumn__133bf :is(h2, h3),
+    #app-mount .nowPlayingColumn__133bf [class*='header'] {
+        color: var(--text-2);
+        font-weight: 700;
+    }
+
+    #app-mount .nowPlayingColumn__133bf [class*='activity'] [class*='title'] {
+        color: var(--text-1);
     }
 }
 

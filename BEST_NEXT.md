@@ -17,6 +17,7 @@ Pages.
 Edit these variables near the beginning of the theme:
 
 ```css
+--best-next-palette: sea-glass; /* noir | sea-glass */
 --best-next-color: #55d6ff;
 --profile-preset: cyber; /* session | cyber | mainframe | void */
 --spicetify-text-touch: on; /* off | on */
@@ -31,6 +32,11 @@ The primary color drives the application accent, navigation markers, avatar
 bezels, profile framing, and terminal details. A secondary contrast color is
 derived automatically.
 
+`sea-glass` is a complete light palette rather than an inversion filter. It
+uses warm ivory surfaces, sea-glass green, faded blue, and soft lilac while
+retaining darker accessible ink and status colors. Set the palette to `noir`
+to return to the original dark Best Next scheme.
+
 ## What changed
 
 - Expanded terminal surfaces for chat, navigation, members, input, dialogs,
@@ -43,6 +49,8 @@ derived automatically.
 - Responsive panel labels with consistent sizing, contrast, and stacking.
 - Optional Spicetify Text-inspired panel legends, tree markers, and restrained
   active-row fills adapted for Discord rather than copied from Spotify.
+- Switchable `noir | sea-glass` application palettes with coordinated text,
+  surfaces, borders, statuses, profile framing, and overlays.
 - Current Discord/Vesktop profile selectors, including settings profile cards.
 
 ## Attribution
