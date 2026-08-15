@@ -1,8 +1,8 @@
 /**
  * @name System24 Best Next
- * @description Personal System24 premium/TTY synthesis with selectable profile presets and one-color control.
+ * @description Personal System24 premium/TTY synthesis with selectable profile presets, one-color control, and a Spicetify Text touch.
  * @author refact0r
- * @version 3.1.1-best-next
+ * @version 3.2.0-best-next
  * @invite nz87hXyvcy
  * @website https://github.com/refact0r/system24
  * @source https://github.com/refact0r/system24/blob/master/theme/system24.theme.css
@@ -100,6 +100,8 @@ body {
     --accent-4: color-mix(in oklch, var(--best-next-color) 76%, black); /* button hover */
     --accent-5: color-mix(in oklch, var(--best-next-color) 64%, black); /* button active */
     --profile-preset: cyber; /* session | cyber | mainframe | void */
+    --spicetify-text-touch: on; /* off | on: calmer text-theme legends and selection language */
+    --text-touch-active-fill: 12%; /* 0% to 30%: strength of selected-row fill */
     --premium-profiles: on; /* off | on */
     --premium-scope: all; /* all | premium (premium = decorated avatars only) */
     --premium-color: var(--best-next-color);
@@ -645,6 +647,116 @@ body {
     }
     .headerWrapper_cb9592 {
         margin: 0;
+    }
+}
+
+/* spicetify-text.css */
+/* A restrained Discord adaptation of Spicetify Text's structural language:
+   calm border legends, text-led selection, and small filesystem-like markers. */
+
+@property --spicetify-text-touch {
+    syntax: 'off | on';
+    inherits: false;
+    initial-value: on;
+}
+
+@container body style(--spicetify-text-touch: on) {
+    #app-mount {
+        --text-touch-fill: color-mix(
+            in oklch,
+            var(--best-next-color) var(--text-touch-active-fill),
+            transparent
+        );
+        --text-touch-rule: color-mix(in oklch, var(--text-4) 42%, transparent);
+    }
+
+    /* Spicetify Text uses quiet legends embedded in panel borders. */
+    .guilds__5e434::after {
+        content: 'Pages';
+    }
+    .sidebarList__5e434::after {
+        content: 'Library';
+    }
+    .subtitleContainer_f75fb0::after {
+        content: 'Path';
+    }
+    .messagesWrapper__36d07::after,
+    .peopleColumn__133bf::after {
+        content: 'Main';
+    }
+    .channelTextArea_f75fb0::after {
+        content: 'Command';
+    }
+    .container_c8ffbb::after,
+    .content_f75fb0 > .membersWrap_c8ffbb::after,
+    .nowPlayingColumn__133bf::after {
+        content: 'Sidebar';
+    }
+    .container__133bf > .container__9293f::after {
+        content: 'Home';
+    }
+    .panels__5e434::after {
+        content: 'Session';
+    }
+    .container__01ae2 > .container__9293f::after {
+        content: 'Thread';
+    }
+    .callContainer_cb9592::after {
+        content: 'Voice';
+    }
+
+    /* A selected row should read as a terminal selection, not a glowing card. */
+    .wrapper__2ea32[class*='modeSelected'] .link__2ea32,
+    .channel__972a0[class*='selected'] {
+        background: var(--text-touch-fill);
+        box-shadow:
+            inset 2px 0 0 var(--best-next-color),
+            inset 0 -1px 0 color-mix(in oklch, var(--best-next-color) 48%, transparent);
+    }
+
+    .wrapper__2ea32 .link__2ea32:hover,
+    .channel__972a0:hover {
+        background: color-mix(in oklch, var(--text-4) 9%, transparent);
+    }
+
+    /* Section headings become shallow directory paths. */
+    .sidebarList__5e434 [class*='containerDefault']:not(:has(.link__2ea32)) h3::before,
+    .privateChannels_e6b769 [class*='privateChannelsHeaderContainer']::before {
+        content: './';
+        flex: 0 0 auto;
+        color: var(--best-next-color);
+        font-weight: 500;
+        letter-spacing: 0;
+    }
+
+    /* Friends rows and tabs borrow the theme's restrained list treatment. */
+    .peopleColumn__133bf [class*='peopleListItem'] {
+        border-bottom: 1px solid var(--text-touch-rule);
+    }
+    .peopleColumn__133bf [class*='peopleListItem']:hover,
+    .peopleColumn__133bf [class*='peopleListItem'][class*='active'],
+    .peopleColumn__133bf [class*='peopleListItem'][class*='selected'] {
+        background: var(--text-touch-fill);
+    }
+    .tabBar__133bf [class*='item_'][class*='selected'] {
+        box-shadow: inset 0 -2px 0 var(--best-next-color);
+    }
+    .tabBar__133bf [class*='item_'][class*='selected']::before {
+        content: '> ';
+        color: var(--best-next-color);
+        font-weight: 500;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    @container body style(--spicetify-text-touch: on) and style(--animations: on) {
+        .wrapper__2ea32 .link__2ea32,
+        .channel__972a0,
+        .peopleColumn__133bf [class*='peopleListItem'] {
+            transition:
+                background-color var(--border-hover-transition),
+                box-shadow var(--border-hover-transition);
+        }
     }
 }
 

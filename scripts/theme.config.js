@@ -8,6 +8,7 @@ module.exports = {
         'ascii.css',
         'colors.css',
         'panel-labels.css',
+        'spicetify-text.css',
         'spotify-bar.css',
         'unrounding.css',
         'tty-surfaces.css',

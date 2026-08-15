@@ -86,6 +86,8 @@ body {
     --accent-4: color-mix(in oklch, var(--best-next-color) 76%, black); /* button hover */
     --accent-5: color-mix(in oklch, var(--best-next-color) 64%, black); /* button active */
     --profile-preset: cyber; /* session | cyber | mainframe | void */
+    --spicetify-text-touch: on; /* off | on: calmer text-theme legends and selection language */
+    --text-touch-active-fill: 12%; /* 0% to 30%: strength of selected-row fill */
     --premium-profiles: on; /* off | on */
     --premium-scope: all; /* all | premium (premium = decorated avatars only) */
     --premium-color: var(--best-next-color);
